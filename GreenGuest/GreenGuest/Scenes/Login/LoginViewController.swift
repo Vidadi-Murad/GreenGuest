@@ -17,8 +17,9 @@ class LoginViewController: UIViewController {
     private let enLan = UIButton()
     private let lanStack = UIStackView()
     //----------------------------------
-    private let 
-    
+    private let headerText = UILabel()
+    private let subTitle = UILabel()
+    private let textStack = UIStackView()
     
     
     override func viewDidLoad() {
@@ -45,6 +46,15 @@ class LoginViewController: UIViewController {
         enLan.titleLabel?.font = UIFont(name:"DMSans-Regular", size: 16)
         
         
+        headerText.text = "Xoş gəlmisiniz!"
+        headerText.textColor = .black
+        headerText.font = UIFont(name:"DMSans-SemiBold",size:30)
+        
+        subTitle.text = "Bir-birindən fərqli aqroturizm fəaliyyətləri üçün hesabınıza daxil olun!"
+        subTitle.textColor = .neutral600
+        subTitle.font = UIFont(name:"DMSans-Regular",size:16)
+        subTitle.numberOfLines = 0
+        
     }
     
     private func setupLayout() {
@@ -57,6 +67,17 @@ class LoginViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             make.trailing.equalToSuperview().inset(20)
         }
+     
+        view.addSubview(textStack)
+        [headerText,subTitle].forEach{textStack.addArrangedSubview($0)}
+        textStack.axis = .vertical
+        textStack.spacing = 8
+        
+        textStack.snp.makeConstraints{ make in
+            make.top.equalTo(lanStack.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
         
         
     }
@@ -65,16 +86,18 @@ class LoginViewController: UIViewController {
         azLan.addTarget(self, action: #selector(didTapAz), for: .touchUpInside)
         enLan.addTarget(self, action: #selector(didTapEn), for: .touchUpInside)
     }
-    
-    @objc private func didTapAz() {
-        azLan.setTitleColor(.black, for: .normal)
-        betweenStick.textColor = .gray
-        enLan.setTitleColor(.gray, for: .normal)
-    }
+
     
     @objc private func didTapEn() {
         enLan.setTitleColor(.black, for: .normal)
         betweenStick.textColor = .gray
         azLan.setTitleColor(.gray, for: .normal)
     }
+    
+    @objc private func didTapAz() {
+        azLan.setTitleColor(.black, for: .normal)
+        betweenStick.textColor = .gray
+        enLan.setTitleColor(.gray, for: .normal)
+    }
 }
+
