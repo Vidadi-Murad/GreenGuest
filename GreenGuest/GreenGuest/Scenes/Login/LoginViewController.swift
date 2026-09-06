@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
     private let mobileTf = BaseTextFields(textFieldStyle: .mobile)
     private let passwordTf = BaseTextFields(textFieldStyle: .password)
     private let tfStack = UIStackView()
+    //--------------------------------------------
+    private let forgetPassword = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,12 @@ class LoginViewController: UIViewController {
         subTitle.textColor = .neutral600
         subTitle.font = UIFont(name:"DMSans-Regular",size:16)
         subTitle.numberOfLines = 0
+        
+        
+        
+        forgetPassword.setTitle("Şifrəni unutdunuz?", for: .normal)
+        forgetPassword.setTitleColor(.primary700, for: .normal)
+        forgetPassword.titleLabel?.font = UIFont(name: "DMSans-Medium",size:14)
         
     }
     
@@ -92,7 +100,11 @@ class LoginViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
         }
         
-        
+        view.addSubview(forgetPassword)
+        forgetPassword.snp.makeConstraints{ make in
+            make.top.equalTo(tfStack.snp.bottom).offset(12)
+            make.trailing.equalToSuperview().inset(12)
+        }
     }
     
     private func setupAction() {
