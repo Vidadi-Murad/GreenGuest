@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
     private let tfStack = UIStackView()
     //--------------------------------------------
     private let forgetPassword = UIButton()
+    //--------------------------------------------
+    private let loginBtn = BaseButtons(buttonStyle: .login)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +106,13 @@ class LoginViewController: UIViewController {
         forgetPassword.snp.makeConstraints{ make in
             make.top.equalTo(tfStack.snp.bottom).offset(12)
             make.trailing.equalToSuperview().inset(12)
+        }
+        
+        
+        view.addSubview(loginBtn)
+        loginBtn.snp.makeConstraints{ make in
+            make.top.equalTo(forgetPassword.snp.bottom).offset(28)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
     }
     
