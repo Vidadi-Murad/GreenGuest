@@ -16,11 +16,14 @@ class LoginViewController: UIViewController {
     private let betweenStick = UILabel()
     private let enLan = UIButton()
     private let lanStack = UIStackView()
-    //----------------------------------
+    //--------------------------------------------
     private let headerText = UILabel()
     private let subTitle = UILabel()
     private let textStack = UIStackView()
-    
+    //--------------------------------------------
+    private let mobileTf = BaseTextFields(textFieldStyle: .mobile)
+    private let passwordTf = BaseTextFields(textFieldStyle: .password)
+    private let tfStack = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +81,16 @@ class LoginViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
         }
         
+        
+        view.addSubview(tfStack)
+        [mobileTf,passwordTf].forEach{tfStack.addArrangedSubview($0)}
+        tfStack.axis = .vertical
+        tfStack.spacing = 16
+        
+        tfStack.snp.makeConstraints{ make in
+            make.top.equalTo(textStack.snp.bottom).offset(28)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
         
         
     }
